@@ -1,3 +1,4 @@
+const { SchemaType } = require('mongoose');
 const Flight = require('../models/flight');
 
 module.exports = {
