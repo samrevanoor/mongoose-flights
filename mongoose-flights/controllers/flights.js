@@ -5,31 +5,34 @@ function index(req, res) {
         if (err) {
             return console.log(err);
         }
-        res.render('flights/index', { flights })
-    });
+        res.render('flights/index', {
+            title: "List of All Flights",
+            flights
+        })
+    }).sort("departs");
 }
 
 function newFlight(req, res) {
-    res.render('flights/new')
+    const newFlight = new Flight();
+    const dt = newFlight.departs;
+    const departsDate = dt.toISOString().slice(0, 16);
+    res.render('flights/new', {
+        title: "Add a new flight",
+        departsDate
+    })
 }
 
 function create(req, res) {
     const flight = req.body;
-    function setDeparts() {
-        if (flight.departs !== undefined) {
-            if (!flight.departs) {
-                const today = new Date();
-                const d = today.getDate();
-                const m = today.getMonth();
-                const y = today.getFullYear();
-                const nextYear = new Date(y + 1, m, d);
-                flight.departs = nextYear;
-                return flight.departs;
-            } else {
-                return flight.departs
-            }
-        }};
-    setDeparts();
+    console.log("rec.body:", flight)
+    if (!flight.departs) {
+        const today = new Date();
+        const d = today.getDate();
+        const m = today.getMonth();
+        const y = today.getFullYear();
+        const nextYear = new Date(y + 1, m, d);
+        flight.departs = nextYear;
+    };
     const newFlight = new Flight(req.body);
     newFlight.save(function (err) {
         if (err) return res.render('flights/new');
@@ -38,8 +41,22 @@ function create(req, res) {
     });
 }
 
+function show(req, res) {
+    const newFlight = new Flight();
+    const dt = newFlight.departs;
+    const departsDate = dt.toISOString().slice(0, 16);
+    Flight.findById(req.params.id, function (err, flight) {
+        res.render('flights/show', {
+            title: "Flight details",
+            flight,
+            departsDate
+        })
+    })
+}
+
 module.exports = {
     index,
     new: newFlight,
-    create
+    create,
+    show
 }

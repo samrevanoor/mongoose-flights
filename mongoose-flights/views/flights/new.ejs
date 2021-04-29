@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mongoose Flights</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-    <h2>Add a New Flight</h2>
+<%- include('../partials/header') %>
     <form action="/flights" method="POST">
         <label>Airline
             <select name="airline">
@@ -26,16 +14,14 @@
                 <option value="DEN" selected>DEN</option>
                 <option value="LAX">LAX</option>
                 <option value="SAN">SAN</option>
-            </select> 
+            </select>
         </label><br>
         <label>Flight Number
             <input type="number" name="flightNo">
         </label><br>
         <label>Departure Date/Time
-            <input type="datetime-local" name="departs">
+            <input type="datetime-local" name="departs" value=<%= departsDate %>>
         </label><br>
         <input type="submit" value="Add Flight">
     </form>
-</body>
-
-</html>
+    <%- include('../partials/footer') %>
