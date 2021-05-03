@@ -38,6 +38,7 @@ const flightSchema = new Schema({
         }
     },
     destinations: [destinationSchema]
+
 });
 
 // Compile the schema into a model and export it

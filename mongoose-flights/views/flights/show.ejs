@@ -18,18 +18,22 @@
         </div>
         <br>
         <% if (flight.destinations.length) { %>
-        <div>Destinations:
-            <% flight.destinations.forEach(function(d){ %>
-                <%= d.airport %>
-                -
-                <%= d.arrival %>
-                <br>
-            <% }) %>
-        </div>
-        <% } else { %>
-            <h5>No Destinations Yet</h5>
-          <% } %>
+            <div>Destinations:
+                <% flight.destinations.forEach(function(d){ %>
+                    <%= d.airport %>
+                        -
+                        <%= d.arrival %>
+                            <br>
+                            <% }) %>
+            </div>
+            <% } else { %>
+                <h5>No Destinations Yet</h5>
+                <% } %>
     </section>
+
+    <form action="/flights/<%= flight._id %>/tickets" method="GET">
+        <button>Add a new ticket</button>
+    </form>
 
     <br><br>
     <h2>Add Destinations</h2>
@@ -44,7 +48,7 @@
             </select>
         </label><br>
         <label>Arrival Date/Time
-            <input type="datetime-local" name="arrival" value=<%= departsDate %>>
+            <input type="datetime-local" name="arrival" value=<%=departsDate %>>
         </label><br>
         <input type="submit" value="Add Destination">
     </form>

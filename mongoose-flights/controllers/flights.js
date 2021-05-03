@@ -15,7 +15,11 @@ function index(req, res) {
 function newFlight(req, res) {
     const newFlight = new Flight();
     const dt = newFlight.departs;
+    const addAYear = dt.getFullYear() + 1;
+    const setNewYear = dt.setFullYear(addAYear);
     const departsDate = dt.toISOString().slice(0, 16);
+    console.log("DT:", dt);
+    console.log("departsDate:", departsDate);
     res.render('flights/new', {
         title: "Add a new flight",
         departsDate
