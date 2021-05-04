@@ -15,7 +15,6 @@ function create(req, res) {
         req.body.flight = flight._id;
         Ticket.create(req.body, function (err, ticket) {
             Ticket.find({ flight: flight._id }, function (err, tickets) {
-                console.log(req.body);
                 flight.save(function (err) {
                     res.redirect(`/flights/${flight._id}`)
                 });

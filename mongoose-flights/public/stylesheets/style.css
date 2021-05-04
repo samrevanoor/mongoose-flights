@@ -7,6 +7,7 @@
 h1 {
   background-color: rgb(1, 165, 151);
   padding: 20px;
+  color: rgb(255, 196, 0)
 }
 
 body {
@@ -76,7 +77,7 @@ input {
 .flights-show {
   font-size: 16px;
   font-weight: bold;
-  color:rgb(1, 165, 151);
+  color:rgb(0, 223, 204);
 }
 
 td {
@@ -88,4 +89,8 @@ td {
   padding: 10px;
   background-color: rgb(255, 196, 0);
   color: navy
+}
+
+li {
+  list-style-type: none;
 }
