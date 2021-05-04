@@ -4,12 +4,12 @@
 
 <form method="POST" action="/flights/<%= flight._id %>/tickets">
     <label>Enter the seat number
-        <input name="seat" required pattern="[A-F][1-9]\d?">
+        <input name="seat" required pattern="[A-F][1-9]\d?" placeholder="(between A1 to F99)">
     </label><br>
     <label>Price
-        <input type="number">
+        <input type="number" name="price" placeholder="in Canadian Dollars">
     </label><br><br>
-    <input type="submit" value="Add Destination">
+    <input class="input-button" type="submit" value="Add ticket">
 </form>
 
 <%- include('../partials/footer') %>

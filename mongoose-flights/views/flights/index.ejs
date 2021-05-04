@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
     <table>
         <thead>
-            <tr>
+            <tr id="table-head">
                 <th>Airline</th>
                 <th>Airport</th>
                 <th>Flight No.</th>
@@ -11,16 +11,16 @@
         <tbody>
             <% flights.forEach(function(f){ %>
                 <tr>
-                    <td>
+                    <td><br>
                         <%= f.airline %>
                     </td>
-                    <td>
+                    <td><br>
                         <%= f.airport %>
                     </td>
-                    <td>
+                    <td><br>
                         <%= f.flightNo %>
                     </td>
-                    <td <%- Date.parse(f.departs)-Date.parse(new Date()) < 0 ? 'class="passed"' : '' %>>
+                    <td <%- Date.parse(f.departs)-Date.parse(new Date()) < 0 ? 'class="passed"' : '' %>><br>
                         <%= f.departs %>
                     </td>
                     <td><a href="/flights/<%= f._id %>">DETAILS</a></td>

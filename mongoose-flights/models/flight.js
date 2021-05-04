@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const destinationSchema = new Schema({
@@ -37,10 +36,9 @@ const flightSchema = new Schema({
             return Date.now(y + 1, m, d)
         }
     },
-    destinations: [destinationSchema]
+    destinations: [destinationSchema],
 
 });
 
-// Compile the schema into a model and export it
 module.exports = mongoose.model('Flight', flightSchema);
 

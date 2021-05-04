@@ -1,42 +1,62 @@
 <%- include('../partials/header') %>
 
     <section>
-        <div>Airline:
+        <div>
+            <span class="flights-show">Airline:</span>
             <%= flight.airline %>
         </div>
         <br>
-        <div>Airport:
+        <div>
+            <span class="flights-show">Airport:</span>
             <%= flight.airport %>
         </div>
         <br>
-        <div>Flight number:
+        <div>
+            <span class="flights-show">Flight number:</span>
             <%= flight.flightNo %>
         </div>
         <br>
-        <div>Departs at:
+        <div>
+            <span class="flights-show">Departs at:</span>
             <%= flight.departs%>
         </div>
         <br>
         <% if (flight.destinations.length) { %>
-            <div>Destinations:
+            <div><span class="flights-show">Destinations:</span><br>
                 <% flight.destinations.forEach(function(d){ %>
-                    <%= d.airport %>
-                        -
-                        <%= d.arrival %>
-                            <br>
-                            <% }) %>
+                    <ul>
+                        <li>
+                            <%= d.airport %>
+                                -
+                                <%= d.arrival %>
+                        </li>
+                    </ul>
+                    <% }) %>
             </div>
             <% } else { %>
-                <h5>No Destinations Yet</h5>
+                <div><span class="flights-show">No Destinations Yet</span></div>
                 <% } %>
     </section>
+<br>
+    <div>
+        <span class="flights-show">Tickets:</span>
+        <% tickets.forEach(function(t){ %>
+            <ul>
+                <li>
+                    Seat: <%= t.seat %>
+                        -
+                        Price: $<%= t.price %>
+                </li>
+            </ul>
+            <% }) %>
+    </div>
 
     <form action="/flights/<%= flight._id %>/tickets" method="GET">
-        <button>Add a new ticket</button>
+        <button class="input-button">Add a new ticket</button>
     </form>
 
-    <br><br>
-    <h2>Add Destinations</h2>
+    <br>
+    <span class="flights-show">Add destinations:</span>
     <form method="POST" action="/flights/<%= flight._id %>/destinations">
         <label>Select this flight's destinations/stops (one at a time)
             <select name="airport">
@@ -47,10 +67,10 @@
                 <option value="SAN">SAN</option>
             </select>
         </label><br>
-        <label>Arrival Date/Time
+        <label>Arrives at:
             <input type="datetime-local" name="arrival" value=<%=departsDate %>>
         </label><br>
-        <input type="submit" value="Add Destination">
+        <input class="input-button" type="submit" value="Add Destination">
     </form>
 
     <%- include('../partials/footer') %>
